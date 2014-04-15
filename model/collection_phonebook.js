@@ -4,7 +4,7 @@
 
 var mongoose = require('mongoose');
 
-mongoose.connect('mongodb://localhost/nodepad');
+mongoose.connect('mongodb://selim:dlgusdlf@ds053808.mongolab.com:53808/nodepad');
 
 var Schema = mongoose.Schema,
 		 ObjectId = mongoose.ObjectId;
