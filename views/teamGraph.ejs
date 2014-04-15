@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0-wip/css/bootstrap.min.css">
+    <style type="text/css">
+        h3{padding-top:50px;}
+
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="row clearfix">
+        <div class="col-md-12 column">
+            <div class="navbar navbar-inverse navbar-fixed-top">
+                <div class="container">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="#">세림티에스지(주) 주소록</a>
+                    </div>
+                    <div class="navbar-collapse collapse">
+                        <ul class="nav navbar-nav">
+                            <li class="active"><a href="/selimList.html">홈</a></li>
+                            <li><a href="http://www.selim.co.kr">본사 홈페이지</a></li>
+                            <li><a href="http://gw.selim.co.kr">본사 그룹웨어</a></li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">직원 통계 <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="/teamGraph">팀별 인원현황</a></li>
+                                    <li><a href="#">직급별 인원현황</a></li>
+                                    <!--<li class="divider"></li>
+                                    <li class="dropdown-header">Nav header</li>
+                                    <li><a href="#">Separated link</a></li>
+                                    <li><a href="#">One more separated link</a></li>-->
+                                </ul>
+                            </li>
+                        </ul>
+                        <form class="navbar-form navbar-right" id="searchForm" method="get" action="/selimList.html">
+                            <!-- <div class="form-group">
+                                 <input type="text" placeholder="Email" class="form-control">
+                             </div>-->
+                            <div class="form-group">
+                                <input type="text" placeholder="직원이름" name="searchFilter" id="searchFilter"  class="form-control">
+                            </div>
+                            <button type="submit" class="btn btn-success">직원 검색</button>
+                            <button type="button" onclick='location.href="/selimList.html";' class="btn btn-cancel">초기화</button>
+                        </form>
+                    </div><!--/.navbar-collapse -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row clearfix">
+        <div class="col-md-12 column">
+            <h3>
+               부서별 인원현황
+            </h3>
+            <div class="row clearfix">
+                <div class="col-md-12 column">
+                    <h3>
+                       <%for(var i=0; i<data.length; i++){%>
+                        <%=data[i]._id%> || <%=data[i].count%><br>
+                        <%}%>
+                    </h3>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0-wip/js/bootstrap.min.js"></script>
+<script src="http://d3js.org/d3.v3.min.js"></script>
+
+</body>
+</html>

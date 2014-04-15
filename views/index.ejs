@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0-wip/css/bootstrap.min.css">
+  </head>
+  <body>
+
+  <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+          <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+              </button>
+              <a class="navbar-brand" href="#">세림티에스지(주) 주소록</a>
+          </div>
+          <div class="navbar-collapse collapse">
+              <ul class="nav navbar-nav">
+                  <li class="active"><a href="/selimList.html">홈</a></li>
+                  <li><a href="http://www.selim.co.kr">본사 홈페이지</a></li>
+                  <li><a href="http://gw.selim.co.kr">본사 그룹웨어</a></li>
+                  <li class="dropdown">
+                      <a href="#" class="dropdown-toggle" data-toggle="dropdown">직원 통계 <b class="caret"></b></a>
+                      <ul class="dropdown-menu">
+                          <li><a href="/teamGraph">팀별 인원현황</a></li>
+                          <li><a href="#">직급별 인원현황</a></li>
+                          <!--<li class="divider"></li>
+                          <li class="dropdown-header">Nav header</li>
+                          <li><a href="#">Separated link</a></li>
+                          <li><a href="#">One more separated link</a></li>-->
+                      </ul>
+                  </li>
+              </ul>
+              <form class="navbar-form navbar-right" id="searchForm" method="get" action="/selimList.html">
+                 <!-- <div class="form-group">
+                      <input type="text" placeholder="Email" class="form-control">
+                  </div>-->
+                  <div class="form-group">
+                      <input type="text" placeholder="직원이름" name="searchFilter" id="searchFilter"  class="form-control">
+                  </div>
+                  <button type="submit" class="btn btn-success">직원 검색</button>
+                  <button type="button" onclick="location.href='/selimList.html';" class="btn btn-cancel">초기화</button>
+              </form>
+          </div><!--/.navbar-collapse -->
+      </div>
+  </div>
+
+  <!-- Main jumbotron for a primary marketing message or call to action -->
+  <div class="jumbotron">
+      <div class="container">
+          <h1>세림 주소록</h1>
+          <p>이곳은 세림인들의 주소록을 볼 수 있는 공간입니다.</p>
+          <p><a href="/insertForm.html" class="btn btn-primary btn-lg">자기 정보 등록하기 &raquo;</a></p>
+      </div>
+  </div>
+
+  <div class="container">
+      <!-- Example row of columns -->
+          <%if(size<=0){%>
+          <div class="row">
+              <div class="col-lg-10" style="margin:0 auto; text-align: center;">
+                  <h1>검색결과가 없습니다.</h1>
+              </div>
+          </div>
+          <%}else if(size==1){%>
+          <div class="row">
+              <div class="col-lg-2">
+                  <img class="img-thumbnail" alt="140x140" src="/images/selimPhoto/<%=data[0].nickname%>.jpg" style="max-width:144px; height:197px;"/>
+              </div>
+              <div class="col-lg-2">
+                  <h2><%=data[0].name%></h2>
+                  <p>부서 : <%=data[0].group%></p>
+                  <p>직급 : <%=data[0].position%></p>
+                  <p>이메일아이디 : <%=data[0].nickname%></p>
+                  <p><a class="btn btn-default" href="/selimView.html?no=<%=data[0].no%>">상세보기 &raquo;</a></p>
+              </div>
+          </div>
+          <%}else if(size<=3){%>
+          <div class="row">
+              <%for(var i=0; i<size; i++) {%>
+              <div class="col-lg-2">
+                  <img class="img-thumbnail" alt="140x140" src="/images/selimPhoto/<%=data[i].nickname%>.jpg" style="max-width:144px; height:197px;"/>
+              </div>
+              <div class="col-lg-2">
+                  <h2><%=data[i].name%></h2>
+                  <p>부서 : <%=data[i].group%></p>
+                  <p>직급 : <%=data[i].position%></p>
+                  <p>이메일아이디 : <%=data[i].nickname%></p>
+                  <p><a class="btn btn-default" href="/selimView.html?no=<%=data[i].no%>">상세보기 &raquo;</a></p>
+              </div>
+              <%}%>
+          </div>
+          <%}else if(size>3){%>
+          <div class="row">
+              <%for(var i=0; i<3; i++) {%>
+              <div class="col-lg-2">
+                  <img class="img-thumbnail" alt="140x140" src="/images/selimPhoto/<%=data[i].nickname%>.jpg" style="max-width:144px; height:197px;"/>
+              </div>
+              <div class="col-lg-2">
+                  <h2><%=data[i].name%></h2>
+                  <p>부서 : <%=data[i].group%></p>
+                  <p>직급 : <%=data[i].position%></p>
+                  <p>이메일아이디 : <%=data[i].nickname%></p>
+                  <p><a class="btn btn-default" href="/selimView.html?no=<%=data[i].no%>">상세보기 &raquo;</a></p>
+              </div>
+              <%}%>
+          </div>
+          <div class="row" style="padding-top:15px;">
+              <%for(var j=3; j<size; j++) {%>
+              <div class="col-lg-2">
+                  <img class="img-thumbnail" alt="140x140" src="/images/selimPhoto/<%=data[j].nickname%>.jpg" style="max-width:144px; height:197px;"/>
+              </div>
+              <div class="col-lg-2">
+                  <h2><%=data[j].name%></h2>
+                  <p>부서 : <%=data[j].group%></p>
+                  <p>직급 : <%=data[j].position%></p>
+                  <p>이메일아이디 : <%=data[j].nickname%></p>
+                  <p><a class="btn btn-default" href="/selimView.html?no=<%=data[j].no%>">상세보기 &raquo;</a></p>
+              </div>
+              <%}%>
+          </div>
+         <% }%>
+      <hr>
+
+      <footer style="margin:0 auto; text-align:center;">
+          <p class='pager'>
+          <ul class="pagination">
+              <% if (paging.first) { %>
+              <li><a href="<%=paging.prelink + paging.first %>">&laquo;&laquo;</a></li>
+              <% }else{%>
+              <li><a href="#">&laquo;&laquo;</a></li>
+              <%}%>
+              <% if (paging.first) { %>
+              <li><a href="<%=paging.prelink + paging.previous %>">&laquo;</a></li>
+              <%}else{%>
+              <li><a href="#">&laquo;</a></li>
+              <%}%>
+              <% for ( var i = 0; i < paging.range.length; i++ ) { %>
+                <%if(currPage==paging.range[i]){%>
+                     <li><a href="<%=paging.prelink %><%=paging.range[i]%>" style="background-color:#EEEEEE;"><%=paging.range[i]%></a></li>
+                <%}else{%>
+                     <li><a href="<%=paging.prelink %><%=paging.range[i]%>"><%=paging.range[i]%></a></li>
+                <%}%>
+              <% } %>
+              <% if (paging.next) { %>
+              <li><a href="<%=paging.prelink + paging.next %>">&raquo;</a></li>
+              <% }else{%>
+              <li><a href="#">&raquo;</a></li>
+              <%}%>
+              <% if (paging.last) {%>
+              <li><a href="<%=paging.prelink + paging.last %>">&raquo;&raquo;</a></li>
+              <% }else{%>
+              <li><a href="#>">&raquo;&raquo;</a></li>
+              <%}%>
+          </ul>
+          </p>
+      </footer>
+  </div> <!-- /container -->
+
+
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0-wip/js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+
+            $('.tr').on('click',function(data){
+                var id = $(this).attr('id');
+                id = id.split('_');
+                location.href ='/selimView.ejs?currPage=<%=currPage%>no='+id[1];
+            });
+
+        });
+    </script>
+  </body>
+</html>

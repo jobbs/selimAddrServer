@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0-wip/css/bootstrap.min.css">
+    <style type="text/css">
+        h3{padding-top:50px;}
+
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="row clearfix">
+        <div class="col-md-12 column">
+            <div class="navbar navbar-inverse navbar-fixed-top">
+                <div class="container">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="#">세림티에스지(주) 주소록</a>
+                    </div>
+                    <div class="navbar-collapse collapse">
+                        <ul class="nav navbar-nav">
+                            <li class="active"><a href="/selimList.html">홈</a></li>
+                            <li><a href="http://www.selim.co.kr">본사 홈페이지</a></li>
+                            <li><a href="http://gw.selim.co.kr">본사 그룹웨어</a></li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">직원 통계 <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="/teamGraph">팀별 인원현황</a></li>
+                                    <li><a href="#">직급별 인원현황</a></li>
+                                    <!--<li class="divider"></li>
+                                    <li class="dropdown-header">Nav header</li>
+                                    <li><a href="#">Separated link</a></li>
+                                    <li><a href="#">One more separated link</a></li>-->
+                                </ul>
+                            </li>
+                        </ul>
+                        <form class="navbar-form navbar-right" id="searchForm" method="get" action="/selimList.html">
+                            <!-- <div class="form-group">
+                                 <input type="text" placeholder="Email" class="form-control">
+                             </div>-->
+                            <div class="form-group">
+                                <input type="text" placeholder="직원이름" name="searchFilter" id="searchFilter"  class="form-control">
+                            </div>
+                            <button type="submit" class="btn btn-success">직원 검색</button>
+                            <button type="button" onclick='location.href="/selimList.html";' class="btn btn-cancel">초기화</button>
+                        </form>
+                    </div><!--/.navbar-collapse -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row clearfix" style="padding-top:40px;">
+        <div class="col-md-12 column">
+            <div class="page-header">
+                <h1>
+                    <%=data.name%>님의 정보 <small>세림티에스지(주)</small>
+                </h1>
+            </div>
+        </div>
+    </div>
+    <div class="row clearfix">
+        <div class="col-md-2 column">
+            <img class="img-thumbnail" alt="140x140" src="/images/selimPhoto/<%=data.nickname%>.jpg" style="max-width:140px;" />
+        </div>
+        <div class="col-md-6 column">
+            <ul>
+                <li>
+                    <b>부서 정보</b> : <%=data.group%>
+                </li>
+                <li>
+                    <b>직급 정보</b> : <%=data.position%>
+                </li>
+                <li>
+                    <b>그룹웨어 이메일 정보</b> : <%=data.nickname%>@selim.co.kr <a id="modal-87762" href="#modal-container-87762" data-toggle="modal" class="btn btn-xs btn-info">메일쓰기</a>
+                </li>
+                <li>
+                    <b>핸드폰 번호</b> : <%=data.mobile%>
+                </li>
+                <li>
+                    <b>주소 정보</b> : <%=data.addr%>
+                </li>
+                <li>
+                    <b>생년월일 정보</b> : <%=data.birth%>
+                </li>
+                <li>
+                    <b>결혼 여부</b> : <%if(data.marriage=='Y'){%>기혼<%}else{%>미혼<%}%>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <hr>
+    <div class="row clearfix" style="padding-top:20px;text-align: center;">
+        <div class="col-md-12 column">
+            <div class="modal fade" id="modal-container-781316" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                            <h4 class="modal-title" id="myModalLabel">
+                               관리자 확인
+                            </h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row clearfix">
+                                <div class="col-md-12 column">
+                                    <form class="form-horizontal" role="form">
+                                        <div class="form-group">
+                                            <label for="inputId" class="col-sm-2 control-label">아이디</label>
+                                            <div class="col-sm-10">
+                                                <input class="form-control" id="inputId" name="inputId" type="text" />
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="inputPassword" class="col-sm-2 control-label">패스워드</label>
+                                            <div class="col-sm-10">
+                                                <input class="form-control" id="inputPassword" name="inputPassword" type="password" />
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" id="cancelModal" class="btn btn-default" data-dismiss="modal">닫기</button>
+                            <button type="button" id="confirmAdmin" class="btn btn-primary">확인</button>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+            <div class="modal fade" id="modal-container-87762" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                            <h4 class="modal-title" id="myModalLabel">
+                                <%=data.name%>님께 이메일보내기
+                            </h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row clearfix">
+                                <div class="col-md-12 column">
+                                    <form class="form-horizontal" role="form" id="emailForm">
+                                        <div class="form-group">
+                                            <label for="senderEmail" class="col-sm-2 control-label">보내는이</label>
+                                            <div class="col-sm-10">
+                                                <input class="form-control" id="senderEmail" name="senderEmail" type="email" />
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="reciever" class="col-sm-2 control-label">받는이</label>
+                                            <div class="col-sm-10">
+                                                <input class="form-control" id="reciever" name="reciever" type="email" readonly="readonly" value="<%=data.nickname%>@selim.co.kr" />
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="subject" class="col-sm-2 control-label">제 목</label>
+                                            <div class="col-sm-10">
+                                                <input class="form-control" id="subject" name="subject" type="text"/>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="contents" class="col-sm-2 control-label">내 용</label>
+                                            <div class="col-sm-10">
+                                               <textarea class="form-control" name="contents" id="contents" cols="50" rows="10"></textarea>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal" id="CancelEmail">취소</button>
+                            <button type="button" class="btn btn-primary" id="sendEmail">이메일보내기</button>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+            <a id="modal-781316" href="#modal-container-781316" data-toggle="modal" class="btn btn-success">수정하기</a>
+            <a id="modal-781317" href="#modal-container-781316" data-toggle="modal" class="btn btn-danger">삭제하기</a>
+            <button type="button" id="list" class="btn btn-warning">목록으로</button>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0-wip/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function(){
+    var modifyFlag=false,
+        deleteFlag=false;
+
+        $("#modal-781316").on("click",function(){
+            modifyFlag = true;
+            deleteFlag = false;
+        });
+
+        $("#modal-781317").on("click",function(){
+            modifyFlag = false;
+            deleteFlag = true;
+        });
+
+        //관리자인증
+        $("#confirmAdmin").on("click",function(){
+            var parameters = {adminId: $("#inputId").val(),password: $("#inputPassword").val()};
+            $.get( '/inspectAdmin',parameters, function(data) {
+                if(data=='Y'){
+                    if(modifyFlag){
+                    location.href="/modifyForm.html?no=<%=data.no%>";
+                    }else{
+
+                        var params = new Object();
+                        params._method = 'DELETE';
+                        params.no = '<%=data.no%>';
+                        $.ajax({
+                            url: '/delete',
+                            dataType: 'json',
+                            data: params,
+                            type: 'POST',
+                            headers: {_method : 'DELETE'}, // 사실 이 부분은 생략해도 되지만...
+                            success: function() {
+                                alert('삭제되었습니다');
+                                location.href="/selimList.html";
+                            },
+                            error: function() {
+                                alert('error');
+                            }
+                        });
+
+
+                    }
+                }else{
+                    alert("관리자 인증에 실패했습니다.");
+                    $("#cancelModal").click();
+                    return false;
+                }
+            });
+
+        });
+
+        //이메일보내기
+        $("#sendEmail").on("click",function(){
+            var parameters = {senderEmail: $("#senderEmail").val(),reciever: $("#reciever").val(),subject: $("#subject").val(),contents: $("#contents").val()};
+            $.post( '/sendEmail',parameters, function(data) {
+                if(data=='Y'){
+                    alert('이메일을 성공적으로 보냈습니다.');
+                    $("#CancelEmail").click();
+                }else{
+                    alert("이메일 전송이 실패했습니다. 사유::"+data);
+                    return false;
+                }
+            });
+
+        });
+    });
+</script>
+</body>
+</html>

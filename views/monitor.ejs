@@ -1,0 +1,30 @@
+<html>
+	<head>
+	    <title>Sample Monitor</title>
+
+	    <!-- <link href="/stylesheets/application.css" media="all" rel="stylesheet" type="text/css"/> -->
+
+	    <script type="text/javascript" src="/socket.io/socket.io.js"></script>
+	    <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+	    <script type="text/javascript" src="/javascript/monitor.js"></script>
+	    <script type="text/javascript" src="/javascript/monitor_node1.js"></script>
+	    <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/globalize/0.1.1/globalize.min.js"></script>
+	    <script type="text/javascript" src="http://cdn3.devexpress.com/jslib/13.2.8/js/dx.chartjs.js"></script>
+
+
+    </head>
+	<body>
+            	<div id="panelLabel">CPU, % <span id="currentCpuUsage"></span></div>            
+            	<div id="monCPU"></div>
+            	<div id="panelLabel_node1">CPU_NODE1, % <span id="currentCpuUsage_node1"></span></div>
+            	<div id="monCPU_node1"></div>
+            	<div id="panelLabel">Memory Consumption, Mb  <span id="currentMemoryUsage"></span></div>
+            	<div id="monMemory"></div>
+            	<div id="panelLabel_node1">Memory_Node1 Consumption, Mb  <span id="currentMemoryUsage_node1"></span></div>
+            	<div id="monMemory_node1"></div>
+            	<div id="monChartMemory"></div>
+            	<div id="monChartMemory_node1"></div>
+            	<div id="pieChartContainer"></div>
+            	<div id="pieChartContainer_node1"></div>
+	</body>
+</html>
